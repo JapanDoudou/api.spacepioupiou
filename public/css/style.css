@@ -1,0 +1,29 @@
+/**************************/
+/****** HEADER ***********/
+/**********************/
+
+#titleImg{
+    display: block;
+    max-height: 10rem;
+    margin:20px auto;
+}
+
+/**************************/
+/****** BODY ***********/
+/**********************/
+
+.card img{
+    max-height: 100px;
+    width: 100px;
+    text-align: center;
+    margin: 5px auto;
+}
+
+/**************************/
+/****** ASIDE ***********/
+/**********************/
+
+.table caption{
+    caption-side: top;
+    align:center;
+}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Space PiouPiou - The Official Website
+{% endblock %}
+{% block body %}
+    <div class="card m-3">
+        <img src="{{asset('img/PiouPiou.png')}}" class="card-img-top" alt="PiouPiou" width="100px" height="">
+        <div class="card-body">
+            <h5 class="card-title">Official SpacePiouPiou Website</h5>
+            <p class="card-text">Welcome my official Website ! Here you can see more news, presentations, and documentations about Online part of my game. He use his own API Rest to manage loged players and their statistics ! So you can see who's the best, how many times I died, how many times the Catliens (cats + Aliens) dies !</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block aside %}
+
+<table class="table table-striped table-bordered m-2">
+    <caption>Leaderboard</caption>
+    <thead>
+        <td>Joueur</td>
+        <td>Score</td>
+    </thead>
+    <tbody>
+    {%  for score in scores %}
+        <tr>
+
+            <td>{{ score.username }}</td>
+            <td>{{ score.highscore }}</td>
+
+        </tr>
+    {%  endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

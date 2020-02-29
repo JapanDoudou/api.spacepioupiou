@@ -323,6 +323,7 @@
     <service id="App\Controller\ScoreController" class="App\Controller\ScoreController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Repository\ScoresRepository"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\ScoreController"/>
       </call>

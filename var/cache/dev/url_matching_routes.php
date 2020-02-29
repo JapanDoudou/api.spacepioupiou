@@ -8,6 +8,8 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
+        '/api/highscores' => [[['_route' => 'highscores', '_controller' => 'App\\Controller\\ScoreController::GetJsonHighScores'], null, null, null, false, false, null]],
+        '/' => [[['_route' => 'index', '_controller' => 'App\\Controller\\ScoreController::GetVueHighScores'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'register', '_controller' => 'App\\Controller\\AuthController::register'], null, ['POST' => 0], null, false, false, null]],
         '/login_check' => [[['_route' => 'login_check'], null, ['POST' => 0], null, false, false, null]],
     ],

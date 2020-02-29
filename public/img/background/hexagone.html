@@ -1,0 +1,30 @@
+<!-- Pattern de remplissage -->
+<style type="text/css">
+    svg {
+        background: rgb(255,255,255,0.1);
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:-1;
+    }
+    polygon {
+        fill: rgb(0,0,0,0);
+        stroke-width: 1.8;
+        stroke: rgba(0,0,255,0.2);
+    }
+</style>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="100%" height="100%">
+    <defs>
+        <pattern id="hexagons" width="50" height="43.4"
+                 patternUnits="userSpaceOnUse"
+                 patternTransform="scale(2) translate(2) rotate(45)">
+            <polygon
+                    points="24.8,22 37.3,29.2 37.3,43.7 24.8,50.9 12.3,43.7 12.3,29.2"
+                    id="hex" />
+            <use xlink:href="#hex" x="25" />
+            <use xlink:href="#hex" x="-25" />
+            <use xlink:href="#hex" x="12.5" y="-21.7" />
+            <use xlink:href="#hex" x="-12.5" y="-21.7" />
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hexagons)" />
