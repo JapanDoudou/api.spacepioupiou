@@ -1,0 +1,3 @@
+<?php //route_name_547e31f82e1cc20201b431486331d842
+
+return [PHP_INT_MAX, 'api_scores_get_item'];
