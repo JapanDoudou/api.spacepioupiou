@@ -1,0 +1,10 @@
+api_platform:
+    title: 'API de Space PiouPiou'
+    description: 'API officielle de gestion des données utilisateurs en ligne'
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
+
