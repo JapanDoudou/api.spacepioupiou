@@ -17,8 +17,8 @@ You can use it with your own unity game / website / wathever you want with the u
 # What is used in this project :
 
 * Symfony 5.0.4 (PHP Framework)
-* API Platform bundle (Bundle that create a CRUD of your Entities to get a JSON-LD response)
-* lexik/jwt-authentication-bundle (A powerful bundle to protect your API with JsonWebToken and SSH keys)
+* API Platform bundle (Bundle that create a CRUD of your Entities)
+* lexik/jwt-authentication-bundle (A powerfull bundle to protect your API with JsonWebToken and SSH keys)
 
 # Walktrought
 
