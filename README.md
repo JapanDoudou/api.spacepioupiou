@@ -11,5 +11,29 @@ You can use it with your own unity game / website / wathever you want with the u
 
 * Apache server with PHP 7.1
 * SQL Database
+* Composer
+* Doctrine (included in this Symfony project)
+
+# What is used in this project :
+
+* Symfony 5.0.4 (PHP Framework)
+* API Platform bundle (Bundle that create a CRUD of your Entities to get a JSON-LD response)
+* lexik/jwt-authentication-bundle (A powerful bundle to protect your API with JsonWebToken and SSH keys)
 
 # Walktrought
+
+Once you clone this project, you cannot use it immediatly. You must configure the .env file located at the root of the main folder.
+Go to line 32. She begin with DATABASE_URL. Replace it with this : 
+DATABASE_URL=mysql://[user]:[password]@IP:PORT/database_name
+
+Once you did it, go to the terminal and copy/past this lines :
+
+php bin/console doctrine:database:create 
+//Create the database with your own database_name
+php bin/console doctrine:schema:update --force 
+//Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder
+
+Once you create the database, we must create the SSH Keys for our Security Web tokens
+Make sure you are located in api.japandoudou folder in your terminal
+
+
