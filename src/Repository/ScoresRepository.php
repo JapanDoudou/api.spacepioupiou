@@ -20,15 +20,7 @@ class ScoresRepository extends ServiceEntityRepository
         parent::__construct($registry, Scores::class);
     }
 
-    // Je dois transformer cette requête
-    // SELECT MAX(scores.score) AS highscore, user.username
-    // FROM scores
-    // INNER JOIN user ON user_id = user.id
-    // GROUP BY user.username
-    // ORDER BY highscore DESC LIMIT 10
-    // Dans mon Repository
-
-    public function TakeHighScoresGroupByUsername($results){
+    public function TakeHighScoresGroupByUsername(){
         $qb = $this->createQueryBuilder('s');
         return $qb->select(['MAX(s.score) AS highscore', 'u.username'])
             ->innerJoin('s.user', 'u')
