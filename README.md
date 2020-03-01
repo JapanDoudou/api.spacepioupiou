@@ -26,30 +26,36 @@ You can use it with your own unity game / website / wathever you want with the u
 Copy/Past this line in your empty php project :  
 git clone https://github.com/JapanDoudou/api.spacepioupiou.git
 
-Once you clone this project, *you cannot use it immediatly*. You must configure the .env file located at the root of the main folder.
+Once you clone this project, **you cannot use it immediatly**. You must configure the .env file located at the root of the main folder.
 *Go to line 32*. She begin with DATABASE_URL. Replace it with this : 
-DATABASE_URL=mysql://[user]:[password]@IP:PORT/database_name  
+* DATABASE_URL=mysql://[user]:[password]@IP:PORT/database_name  
 
 Once you did it, go to the terminal and copy/past this lines :
 
-'php bin/console doctrine:database:create'   
-//Create the database with your own database_name  
-'php bin/console doctrine:schema:update --force'     
-//Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder  
+* php bin/console doctrine:database:create  
+** //Create the database with your own database_name  
+* php bin/console doctrine:schema:update --force 
+** //Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder  
 
 Once you create the database, we must create the *SSH Keys* for our Security Web tokens.  
 *Make sure you are located in api.spacepioupiou/config/jwt* folder in your terminal and enter those lines :  
 
-'openssl genrsa -out private.pem -aes256 4096'  
-They will ask you a secret phrase to encrypt/decrypt your file. You must keep it in mind because you need it for the second line too :  
-'openssl rsa -pubout -in private.pem -out public.pem'
+* openssl genrsa -out private.pem -aes256 4096
+They will ask you a secret phrase to encrypt/decrypt your file. You must keep it in mind because you need it for the second line too and the next one too :  
+$ openssl rsa -pubout -in private.pem -out public.pem
 
 Once you did it, go to the *api.spacepioupiou/config/* and open *lexik_jwt_authentication.yaml* file. This is the file where your private.pem and public.pem location must be put. By default it's done but feel free to manage it differently. *You must put your pass_phrase* in the line 4 like this : pass_phrase: 'mypassphrase'. The token_ttl is the valid duration of a connection. For my game, 1h is enought (for the moment).
 
 By luck, routes and firewall are already configured out in this project. We use the UserInterface and Encoder of Symfony to manage users and password encryption. Routes can be configured in the security.yaml file. Encryption too (The **encode method** is at line 34 of src/Controller/AuthController.php file).  
 
 ## Test the API :
-In this part we will create the first user and we send a Score to the database
+In this part we will create the first user and we send a Score to the database.
+To start your server, you can copy/past this line in your terminal :  
+(Admiting you're in api.japandoudou folder)
+
+php -S 127.0.0.1:8000 -T public
+
+localhost is for the next part this 127.0.0.1 IP.
 
 ### Creating the first user :
 And then we will create the first user :)
@@ -59,14 +65,14 @@ Let's copy/past this line in our terminal :
 
 The user **MyAwesomeUserName** is created in the database (and his own userData tab). With that, we can now log our user in :  
 ### Get the JwToken :
-'curl -X POST -H "Content-Type: application/json" http://localhost:8000/login_check -d '{"username":"**MyAwesomeUserName**","password":"**Not0000**"}''
+curl -X POST -H "Content-Type: application/json" http://localhost:8000/login_check -d '{"username":"**MyAwesomeUserName**","password":"**Not0000**"}'
 
 The expected answer must be something like that : {"token":"eyJ0eXAiOi-A-lot-of-characters-V7tgd3io"}.
 
 ### POST a fake score :
 To test the final part, we will post a fake score. 
 
-'curl -X POST -H "Authorization: Bearer eyJ0eXAiOi-A-lot-of-characters-V7tgd3io" -H "Content-Type: application/json" http://localhost:8000/api/scores -d '{"user":"/api/users/1","score":999999}''
+curl -X POST -H "Authorization: Bearer eyJ0eXAiOi-A-lot-of-characters-V7tgd3io" -H "Content-Type: application/json" http://localhost:8000/api/scores -d '{"user":"/api/users/1","score":999999}'
 
 The response must be something like that : 
 '{"score":999999,"creationDate":"2020-03-01T00:00:00+01:00","user":{"username":"test"}}'
