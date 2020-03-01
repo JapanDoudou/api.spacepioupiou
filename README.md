@@ -33,18 +33,20 @@ Once you clone this project, **you cannot use it immediatly**. You must configur
 Once you did it, go to the terminal and copy/past this lines :
 
 * php bin/console doctrine:database:create  
-** //Create the database with your own database_name  
+** Create the database with your own database_name  
 * php bin/console doctrine:schema:update --force 
-** //Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder  
+** Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder  
 
 Once you create the database, we must create the *SSH Keys* for our Security Web tokens.  
 *Make sure you are located in api.spacepioupiou/config/jwt* folder in your terminal and enter those lines :  
 
 * openssl genrsa -out private.pem -aes256 4096
 They will ask you a secret phrase to encrypt/decrypt your file. You must keep it in mind because you need it for the second line too and the next one too :  
-$ openssl rsa -pubout -in private.pem -out public.pem
+* openssl rsa -pubout -in private.pem -out public.pem
 
-Once you did it, go to the *api.spacepioupiou/config/* and open *lexik_jwt_authentication.yaml* file. This is the file where your private.pem and public.pem location must be put. By default it's done but feel free to manage it differently. *You must put your pass_phrase* in the line 4 like this : pass_phrase: 'mypassphrase'. The token_ttl is the valid duration of a connection. For my game, 1h is enought (for the moment).
+Once you did it, go to the *api.spacepioupiou/config/* and open *lexik_jwt_authentication.yaml* file. This is the file where your private.pem and public.pem location must be put. By default it's done but feel free to manage it differently. *You must put your pass_phrase* in the line 4 like this : 
+* pass_phrase: 'mypassphrase'.  
+The token_ttl is the valid duration of a connection. For my game, 1h is enought (for the moment).
 
 By luck, routes and firewall are already configured out in this project. We use the UserInterface and Encoder of Symfony to manage users and password encryption. Routes can be configured in the security.yaml file. Encryption too (The **encode method** is at line 34 of src/Controller/AuthController.php file).  
 
@@ -99,3 +101,11 @@ Comming soon
 * I must save in the database the roles of each user. Only me and maybe other peoples can ben ROLE_ADMIN to administrate and kick the cheaters
 * I must include a verification by mail to avoid someone to create Infinite account
 * If one day I sell my game, I must see if it's compatible with STEAM.
+
+# Usefull Links :
+Doctrine Documentation for Symfony :
+https://symfony.com/doc/current/doctrine.html
+API Platform documentation :
+https://api-platform.com/docs/core/getting-started/
+
+And thanks you !
