@@ -79,8 +79,17 @@ All access to http://my_web_wite/api need to be identify with a JsonWebToken in 
 * Everyone can register an acount by sending a form (with username, email, password) with a POST method to the http://my_web_wite/register. In the AuthController, we check that username and email didn't already exist. They are marked as unique in the User.php Entity too. New users are logged as [ROLE_USER].
 * Once you create an account, you need to log you in by sending a POST request to http://my_web_site/login_check with your username and your password. The answer is a JSON Token that you must save to put it in EVERY header of any request on the API (http://my_web_site/api/scores/
 * The routes are not all protected yet but in the next update USERS will only be able to make GET request (not on the other users) and POST to keep their scores and compare them, and PUT for their stats. I'm working on a method to delete his own account and stats.
+* The link http://my_web_site/api/highscores/ send a JSON with the 10 best scores Grouped by users (only 1 best score per user so). For now he is a little buggy : he order it by alphabetical letters xD
 * Like I said, in the next Update, only ROLE_ADMIN can make any type of request, including DELETE.
+* It include a little FRONT View that show the 10 best Users and their highscores at the root of the website.
 
 ## USE the API With UNITY Games in C#
 
 Comming soon
+
+## What must be done in priority
+
+* I must increase security of my API. If someone is loged in and have the necessary skills, he can delete everything he want. Even if he is loged as a simple user.
+* I must save in the database the roles of each user. Only me and maybe other peoples can ben ROLE_ADMIN to administrate and kick the cheaters
+* I must include a verification by mail to avoid someone to create Infinite account
+* If one day I sell my game, I must see if it's compatible with STEAM.
