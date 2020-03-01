@@ -33,7 +33,9 @@ php bin/console doctrine:database:create
 php bin/console doctrine:schema:update --force 
 //Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder
 
-Once you create the database, we must create the SSH Keys for our Security Web tokens
-Make sure you are located in api.japandoudou folder in your terminal
+Once you create the database, we must create the SSH Keys for our Security Web tokens.
+Make sure you are located in api.japandoudou/config/jwt folder in your terminal and enter those lines :
 
+openssl genrsa -out private.pem -aes256 4096
+openssl rsa -pubout -in private.pem -out config/jwt/public.pem
 
