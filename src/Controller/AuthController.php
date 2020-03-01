@@ -19,11 +19,11 @@ class AuthController extends AbstractController
         $password = $request->request->get('password');
         $email = $request->request->get('email');
 
-        /*On vérifie que le nom d'utilisateur existe pas déjà */
+        /* We check that the username is not already in use */
         if ($this->CheckKey("username", $username)){
             return new Response(sprintf("Username Already Exist"));
         }
-        /* On vérifie que l'email est valide et si oui, si l'utilisateur a déjà enregistré le mail */
+        /* We check that the email is valid and not already in use */
         if ($this->CheckEmail($email)) {
             if ($this->CheckKey("email", $email)) {
                 return new Response(sprintf("Email already in use. Do you forgot your password ?"));
