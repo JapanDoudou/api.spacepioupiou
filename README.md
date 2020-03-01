@@ -28,14 +28,14 @@ DATABASE_URL=mysql://[user]:[password]@IP:PORT/database_name
 
 Once you did it, go to the terminal and copy/past this lines :
 
-php bin/console doctrine:database:create 
-//Create the database with your own database_name
-php bin/console doctrine:schema:update --force 
-//Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder
+php bin/console doctrine:database:create   
+//Create the database with your own database_name  
+php bin/console doctrine:schema:update --force   
+//Create the tables by using Entities. You can check them in the api.japandoudou/src/Entity folder  
 
-Once you create the database, we must create the SSH Keys for our Security Web tokens.
-Make sure you are located in api.japandoudou/config/jwt folder in your terminal and enter those lines :
+Once you create the database, we must create the SSH Keys for our Security Web tokens.  
+Make sure you are located in api.japandoudou/config/jwt folder in your terminal and enter those lines :  
 
-openssl genrsa -out private.pem -aes256 4096
-openssl rsa -pubout -in private.pem -out config/jwt/public.pem
+openssl genrsa -out private.pem -aes256 4096  
+openssl rsa -pubout -in private.pem -out config/jwt/public.pem  
 
