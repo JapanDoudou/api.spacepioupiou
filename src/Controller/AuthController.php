@@ -21,12 +21,12 @@ class AuthController extends AbstractController
 
         /* We check that the username is not already in use */
         if ($this->CheckKey("username", $username)){
-            return new Response(sprintf("Username Already Exist"));
+            return new Response(sprintf("Username Already Exist"),406);
         }
         /* We check that the email is valid and not already in use */
         if ($this->CheckEmail($email)) {
             if ($this->CheckKey("email", $email)) {
-                return new Response(sprintf("Email already in use. Do you forgot your password ?"));
+                return new Response(sprintf("Email already in use. Do you forgot your password ?",406));
             }
 
             /* Enregistement des données du nouvel utilisateur */
@@ -37,14 +37,13 @@ class AuthController extends AbstractController
             /* We initialize the datas of the new User ! */
             $userData = new UserData();
             $user->setUserData($userData);
-            $userData->setConnections(0);
             $em->persist($user);
             $em->persist($userData);
             $em->flush();
 
             return new Response(sprintf('User %s successfully created', $user->getUsername()));
         } else {
-            return new Response(sprintf("Email is not in correct format"));
+            return new Response(sprintf("Email is not in correct format",406));
         }
     }
 

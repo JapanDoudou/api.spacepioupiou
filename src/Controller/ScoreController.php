@@ -22,7 +22,7 @@ class ScoreController extends AbstractController
         $this->scoreRepository = $scoresRepository;
     }
 
-    private public function ReturnHighScoreList()
+    private function ReturnHighScoreList()
     {
         return $this->scoreRepository->TakeHighScoresGroupByUsername();
     }

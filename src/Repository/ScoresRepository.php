@@ -25,6 +25,7 @@ class ScoresRepository extends ServiceEntityRepository
         return $qb->select(['MAX(s.score) AS highscore', 'u.username'])
             ->innerJoin('s.user', 'u')
             ->groupBy('u.username')
+            ->orderBy('highscore', 'DESC')
             ->getQuery()->getResult()
             ;
     }

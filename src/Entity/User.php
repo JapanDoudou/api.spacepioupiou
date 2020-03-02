@@ -10,35 +10,63 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Action\NotFoundAction;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity()
- * @ApiResource(formats={"json"})
+ * @ApiResource(formats={"json"},
+ *     normalizationContext={"groups"={"user:read"}},
+ *     denormalizationContext={"groups"={"user:write"}},
+ *     collectionOperations={
+ *         "get",
+ *         "post",
+ *         "delete"={
+ *             "controller"=NotFoundAction::class,
+ *             "read"=false,
+ *             "output"=false,
+ *         },
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put",
+ *         "post",
+ *         "delete"={
+ *             "controller"=NotFoundAction::class,
+ *             "read"=false,
+ *             "output"=false,
+ *         },
+ *     }
+ *     )
  * @ApiFilter(SearchFilter::class, properties={"username": "exact"})
  */
 class User  implements  UserInterface,\Serializable
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"user:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user:write"})
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Groups("HighScores")
+     * @Groups({"user:read", "user:write"})
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Groups({"user:read", "user:write"})
      */
     private $email;
 
@@ -52,8 +80,14 @@ class User  implements  UserInterface,\Serializable
      */
     private $scoring;
 
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
     public function __construct()
     {
+        $this->isActive = true;
         $this->scoring = new ArrayCollection();
     }
 

@@ -107,28 +107,43 @@ class __TwigTemplate_fe0e99821975f3dd06c8b5cd323ee2852332857fca1bbaab5f89c336896
     <tbody>
     ";
         // line 24
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["scores"]) || array_key_exists("scores", $context) ? $context["scores"] : (function () { throw new RuntimeError('Variable "scores" does not exist.', 24, $this->source); })()));
-        foreach ($context['_seq'] as $context["_key"] => $context["score"]) {
+        if (0 === twig_compare(twig_length_filter($this->env, (isset($context["scores"]) || array_key_exists("scores", $context) ? $context["scores"] : (function () { throw new RuntimeError('Variable "scores" does not exist.', 24, $this->source); })())), 0)) {
             // line 25
             echo "        <tr>
 
-            <td>";
-            // line 27
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["score"], "username", [], "any", false, false, false, 27), "html", null, true);
-            echo "</td>
-            <td>";
-            // line 28
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["score"], "highscore", [], "any", false, false, false, 28), "html", null, true);
-            echo "</td>
+            <td>Nobody</td>
+            <td>0</td>
 
         </tr>
     ";
+        } else {
+            // line 32
+            echo "        ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["scores"]) || array_key_exists("scores", $context) ? $context["scores"] : (function () { throw new RuntimeError('Variable "scores" does not exist.', 32, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["score"]) {
+                // line 33
+                echo "            <tr>
+
+                <td>";
+                // line 35
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["score"], "username", [], "any", false, false, false, 35), "html", null, true);
+                echo "</td>
+                <td>";
+                // line 36
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["score"], "highscore", [], "any", false, false, false, 36), "html", null, true);
+                echo "</td>
+
+            </tr>
+        ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['score'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 40
+            echo "    ";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['score'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 32
+        // line 41
         echo "    </tbody>
 </table>
 
@@ -150,7 +165,7 @@ class __TwigTemplate_fe0e99821975f3dd06c8b5cd323ee2852332857fca1bbaab5f89c336896
 
     public function getDebugInfo()
     {
-        return array (  132 => 32,  122 => 28,  118 => 27,  114 => 25,  110 => 24,  100 => 16,  93 => 15,  79 => 7,  76 => 6,  69 => 5,  61 => 3,  54 => 2,  37 => 1,);
+        return array (  147 => 41,  144 => 40,  134 => 36,  130 => 35,  126 => 33,  121 => 32,  112 => 25,  110 => 24,  100 => 16,  93 => 15,  79 => 7,  76 => 6,  69 => 5,  61 => 3,  54 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -178,17 +193,26 @@ class __TwigTemplate_fe0e99821975f3dd06c8b5cd323ee2852332857fca1bbaab5f89c336896
         <td>Score</td>
     </thead>
     <tbody>
-    {%  for score in scores %}
+    {% if scores|length == 0 %}
         <tr>
 
-            <td>{{ score.username }}</td>
-            <td>{{ score.highscore }}</td>
+            <td>Nobody</td>
+            <td>0</td>
 
         </tr>
-    {%  endfor %}
+    {% else %}
+        {%  for score in scores %}
+            <tr>
+
+                <td>{{ score.username }}</td>
+                <td>{{ score.highscore }}</td>
+
+            </tr>
+        {%  endfor %}
+    {% endif %}
     </tbody>
 </table>
 
-{% endblock %}", "index.html.twig", "/var/www/html/untitled4/api.japandoudou/templates/index.html.twig");
+{% endblock %}", "index.html.twig", "/var/www/html/SpaceAPI/api.spacepioupiou/templates/index.html.twig");
     }
 }

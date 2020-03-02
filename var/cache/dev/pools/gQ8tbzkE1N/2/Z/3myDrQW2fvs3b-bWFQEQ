@@ -1,0 +1,68 @@
+<?php //%255BApp%255CEntity%255CUser%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiFilter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiFilter')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                1 => [
+                    'get',
+                    'post',
+                    'delete' => [
+                        'controller' => 'ApiPlatform\\Core\\Action\\NotFoundAction',
+                        'read' => false,
+                        'output' => false,
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                1 => [
+                    'get',
+                    'put',
+                    'post',
+                    'delete' => [
+                        'controller' => 'ApiPlatform\\Core\\Action\\NotFoundAction',
+                        'read' => false,
+                        'output' => false,
+                    ],
+                ],
+            ],
+            'attributes' => [
+                1 => [
+                    'formats' => [
+                        'json',
+                    ],
+                    'normalization_context' => [
+                        'groups' => [
+                            'user:read',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'user:write',
+                        ],
+                    ],
+                ],
+            ],
+            'filterClass' => [
+                2 => 'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\SearchFilter',
+            ],
+            'properties' => [
+                2 => [
+                    'username' => 'exact',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+    ],
+    []
+); }];

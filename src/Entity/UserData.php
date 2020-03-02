@@ -29,6 +29,11 @@ class UserData
      */
     private $connections;
 
+    public function __construct()
+    {
+        $this->connections = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
