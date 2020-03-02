@@ -21,15 +21,15 @@ class AuthController extends AbstractController
 
         /* We check that the username is not already in use */
         if ($this->CheckKey("username", $username)){
-            return new Response(sprintf("Username Already Exist"),406);
+            return new Response(sprintf("Username Already Exist"),Response::HTTP_PRECONDITION_FAILED);
         }
         /* We check that the email is valid and not already in use */
         if ($this->CheckEmail($email)) {
             if ($this->CheckKey("email", $email)) {
-                return new Response(sprintf("Email already in use. Do you forgot your password ?",406));
+                return new Response(sprintf("Email already in use. Do you forgot your password ?",Response::HTTP_PRECONDITION_FAILED));
             }
 
-            /* Enregistement des données du nouvel utilisateur */
+            /* Saving new user datas */
             $user = new User();
             $user->setPassword($encoder->encodePassword($user, $password));
             $user->setUsername($username);
@@ -43,7 +43,7 @@ class AuthController extends AbstractController
 
             return new Response(sprintf('User %s successfully created', $user->getUsername()));
         } else {
-            return new Response(sprintf("Email is not in correct format",406));
+            return new Response(sprintf("Email is not in correct format",Response::HTTP_PRECONDITION_FAILED));
         }
     }
 

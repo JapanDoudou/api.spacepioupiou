@@ -19,7 +19,8 @@ class ScoresRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Scores::class);
     }
-
+    /* This function is made to take the best score of each player,
+    and order them from the best to the 10th best highscore */
     public function TakeHighScoresGroupByUsername(){
         $qb = $this->createQueryBuilder('s');
         return $qb->select(['MAX(s.score) AS highscore', 'u.username'])
